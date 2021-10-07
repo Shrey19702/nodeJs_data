@@ -1,15 +1,3 @@
-console.log("hello .... to all")
-console.log(process.argv)
+const comp= require('./comp')
 
-function fact(n){
-    if(n==1){
-        return 1;
-    }
-    else if(n==0){
-        return 0;
-    }
-    return fact(n-1)+fact(n-2);
-}
-console.log(fact)
-
-//use--> node <filename.js> to run the file 
+console.log(comp.add(4,5), comp.sub(5,5) , comp.mul(5,5),comp.div(5,5))
