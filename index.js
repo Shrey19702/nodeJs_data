@@ -1,10 +1,23 @@
 const http= require('http'); // module http 
 const port= 8000;
+const fs= require('fs'); //for readiing and writting in /from files
 
 function requestHandler(req, res){    // function handles request givin to server
     console.log(req.url);  // req.url gives the url requested by  client
     res.writeHead(200, {'content-type':'text/html'}); // 200 is number tag for sucesssful, 404 for errors.... object contains data for output  
-    res.end("<h1 style='red'>hello this server is running on "+String(port)+" </h1>"); // res.end responds with the output(html)
+    
+    fs.readFile('./index.html', function(error, data){        // reading the file index.html (error for an error in reading)
+        if(error){
+            console.log("error in loading html :", error);
+            return res.end('<h1> Error </h1>')
+        }
+        else{
+            return res.end(data);
+        }
+    });
+    
+    
+    //res.end("<h1 style='red'>hello this server is running on "+String(port)+" </h1>"); // res.end responds with the output(html)
 }
 
 const server = http.createServer(requestHandler); //server created on machine
