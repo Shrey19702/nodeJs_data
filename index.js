@@ -3,7 +3,8 @@ const port= 8000;
 
 function requestHandler(req, res){    // function handles request givin to server
     console.log(req.url);  // req.url gives the url requested by  client
-    res.end("hello this server is running on "+String(port)); // res.end responds with the output(html)
+    res.writeHead(200, {'content-type':'text/html'}); // 200 is number tag for sucesssful, 404 for errors.... object contains data for output  
+    res.end("<h1>hello this server is running on "+String(port)+" </h1>"); // res.end responds with the output(html)
 }
 
 const server = http.createServer(requestHandler); //server created on machine
