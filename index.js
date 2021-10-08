@@ -1,7 +1,12 @@
 const http= require('http'); // module http 
 const port= 8000;
 
-const server = http.createServer(); //server created on machine
+function requestHandler(req, res){    // function handles request givin to server
+    console.log(req.url);  // req.url gives the url requested by  client
+    res.end("hello this server is running on "+String(port)); // res.end responds with the output(html)
+}
+
+const server = http.createServer(requestHandler); //server created on machine
 
 server.listen(port, function(error){   //listen to the server created 
     if(error){
